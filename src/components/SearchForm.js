@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
-const SearchForm = () => {
+const SearchForm = ({getRecipes}) => {
   const [text, setText] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted");
+    if(text === ""){
+      alert("Enter some text");
+      return;
+    }
+    getRecipes(text);
+
   }
   return (
     <form className="searchForm" onSubmit={handleSubmit}>
