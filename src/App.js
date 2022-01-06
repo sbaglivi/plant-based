@@ -1,7 +1,7 @@
-import './App.css';
 import SearchForm from './components/SearchForm';
 import Recipe from "./components/Recipe";
 import RecipePage from "./components/RecipePage";
+import styles from "./App.module.css"
 import { useState } from 'react';
 import { Route, Routes, useParams, Link } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ function App() {
 
   const [recipes, setRecipes] = useState([]);
   const getRecipes = async (query) => {
-    let queryString = `https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&query=${query}&apiKey=${API_KEY}&addRecipeInformation=true`;
+    let queryString = `https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&query=${query}&apiKey=${API_KEY}&addRecipeInformation=true&fillIngredients=true`;
     try {
       let response = await fetch(queryString);
       if (response.ok) {
@@ -33,51 +33,17 @@ function App() {
     }
   }
 
-  const logRecipeInfo = async () => {
-    let queryString = `https://api.spoonacular.com/recipes/716429/information?includeNutrition=false&apiKey=${API_KEY}`
-    let response = await fetch(queryString);
-    if (response.ok) {
-      let results = await response.json();
-      console.log(results);
-    }
-  }
-  const logRecipeIngredients = async () => {
-    let queryString = `https://api.spoonacular.com/recipes/1003464/ingredientWidget.json?apiKey=${API_KEY}`
-    let response = await fetch(queryString, { apiKey: API_KEY });
-    if (response.ok) {
-      let results = await response.json();
-      console.log(results);
-    }
-  }
-  const getRecipesInstructions = async () => {
-    let instructions = [];
-    let queryString, recipe, response, results;
-    for (let i = 0; i < 5; i++) {
-      recipe = recipes[i];
-      queryString = `https://api.spoonacular.com/recipes/${recipe.id}/analyzedInstructions?apiKey=${API_KEY}`
-      response = await fetch(queryString);
-      if (response.ok) {
-        results = await response.json();
-        instructions.push(results);
-      } else {
-        console.log("broblem");
-        break;
-      }
-    }
-    console.log(instructions);
-  }
   return (
     <Routes>
       <Route path="/" exact element={
-        <div className="App">
+        <div className={styles.App}>
           <SearchForm getRecipes={getRecipes} />
-          <button onClick={getRecipesInstructions}>Get information of first 5</button>
-          <div className="recipesDiv">
-            {recipes.map(recipe => <Link to={`recipes/${recipe.id}`}> <Recipe recipe={recipe} key={recipe.id} /></Link>)}
+          <div className={styles.recipesDiv}>
+            {recipes.map(recipe => <Link to={`recipes/${recipe.id}`} key={recipe.id} > <Recipe recipe={recipe} /></Link>)}
           </div>
         </div>
       } />
-      <Route path="/recipes/:id" element={<RecipePage />} />
+      <Route path="/recipes/:id" element={<RecipePage recipes={recipes} />} />
       <Route path="/:unknown" element={<NotFound />} />
     </Routes>
   );

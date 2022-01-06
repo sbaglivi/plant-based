@@ -1,0 +1,27 @@
+.searchForm {
+  text-align: center;
+  background-color: white;
+  margin: 20px;
+  height: 42px;
+  width: 40%;
+  border-radius: 25%;
+  margin: 0 auto;
+}
+.searchForm input {
+  border: none;
+  top: 10px;
+  left: 30px;
+  width: 380px;
+  font-size: 20px;
+}
+.searchForm input:focus {
+  outline: none;
+}
+.searchForm svg {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+.searchForm svg:hover {
+  cursor: pointer;
+}

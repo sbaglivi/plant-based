@@ -1,10 +1,10 @@
 html, body, .App {
-  min-height: 100vh;
   max-width: 100vw;
   margin: 0px;
   box-sizing: border-box;
 }
 .App {
+  min-height: 100vh;
   background-color: #2d2c38;
   display: flex;
   flex-direction: column;
@@ -16,51 +16,9 @@ html, body, .App {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   margin-bottom: 20px;
-}
-.searchForm {
-  text-align: center;
-  background-color: white;
-  margin: 20px;
-  height: 42px;
-  width: 500px;
-  border-radius: 30px;
-  position: relative;
-}
-.searchForm input {
-  border: none;
-  position: absolute;
-  top: 10px;
-  left: 30px;
-  width: 380px;
-  font-size: 20px;
-}
-.searchForm input:focus {
-  outline: none;
-}
-/* .searchForm button {
-  border: none;
-  background-color: #115a32;
-  color: white;
-  font-size: 18px;
-  padding: 6px;
-  border-radius: 14px;
-  position: absolute;
-  top: 5px;
-  right: 10px;
-} */
-.searchForm svg {
-  position: absolute;
-  right: 20px;
-  top: 10px;
-}
-.searchForm svg:hover {
-  cursor: pointer;
-}
-.searchForm button:hover {
-  cursor: pointer;
 }
 .recipeTable {
   background-color: white;
@@ -83,4 +41,8 @@ html, body, .App {
 .recipeTable td {
   border: 1px solid #bbbbbb;
   padding: 4px;
+}
+a {
+  color: black;
+  text-decoration: none;
 }
