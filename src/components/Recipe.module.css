@@ -1,9 +1,68 @@
 .recipe {
     display: grid;
+    grid-template-rows: auto 1fr;
+    width: 300px;
+    height: 450px;
+    row-gap: 0px;
+    box-shadow: 4px 4px 4px #0808086b;
+    overflow: hidden;
+}
+.recipe img {
+    grid-row: 1;
+    object-fit: cover;
+    height: 380px;
+    width: 100%;
+    border-bottom: 1px solid black;
+    transition: height 0.5s;
+}
+.recipeText {
+    grid-row: 2;
+    background-color: white;
+    padding: 10px;
+} 
+.recipeTime, .recipePrice, .recipeServings {
+  opacity: 0;
+}
+
+.recipe h4 {
+  display: inline;
+}
+.recipe:hover .recipeTime,.recipe:hover .recipePrice,.recipe:hover .recipeServings {
+  opacity: 1;
+}
+.recipe:hover img{
+  height: 250px;
+  transition: height 0.5s;
+}
+/* @keyframes show {
+  from {
+    display: none;
+  }
+  to {
+    display: inherit;
+  }
+}
+.recipe:hover .recipePrice {
+  animation: show 0.5s;
+}
+.recipe:hover .recipeServings {
+  animation: show 0.5s;
+}
+.recipe:hover .recipeTime {
+  animation: show 0.5s;
+} */
+
+
+
+
+/* 
+.recipe {
+    display: grid;
     grid-template-rows: min-content auto;
     width: 300px;
     height: 450px;
     row-gap: 0px;
+    box-shadow: 4px 4px 4px #0808086b;
 }
 .recipe img {
     grid-row: 1;
@@ -14,13 +73,7 @@
     grid-row: 2;
     background-color: white;
     padding: 10px;
-} 
-
-
-
-
-
-
+}  */
 
 
 

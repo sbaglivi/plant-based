@@ -1,27 +1,38 @@
 .searchForm {
+  position: relative;
   text-align: center;
-  background-color: white;
-  margin: 20px;
-  height: 42px;
-  width: 40%;
   border-radius: 25%;
-  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 .searchForm input {
   border: none;
-  top: 10px;
-  left: 30px;
-  width: 380px;
+  padding-left: 30px;
+  padding-right: 50px;
+  width: 30vw;
+  border-radius: 20px;
+  height: 40px;
   font-size: 20px;
+  margin: 0 auto;
 }
 .searchForm input:focus {
   outline: none;
 }
 .searchForm svg {
   position: absolute;
-  right: 20px;
-  top: 10px;
+  top: 8px;
+  right: 12px;
 }
 .searchForm svg:hover {
   cursor: pointer;
+}
+@media screen and (width < 1080px) {
+  .searchForm input {
+    width: 50vw;
+  } 
+}
+@media screen and (width < 600px){
+  .searchForm input {
+    width: 70vw;
+  }
 }

@@ -3,6 +3,12 @@ html, body, .App {
   margin: 0px;
   box-sizing: border-box;
 }
+h1 {
+  color: white;
+}
+.error {
+  color: white;
+}
 .App {
   min-height: 100vh;
   background-color: #2d2c38;
@@ -12,12 +18,12 @@ html, body, .App {
   align-items: center;
 }
 .recipesDiv {
-  max-width: 80%;
+  max-width: 70%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 20px;
 }
 .recipeTable {
