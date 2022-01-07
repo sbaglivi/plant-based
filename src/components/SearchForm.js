@@ -15,7 +15,7 @@ const SearchForm = ({ getRecipes }) => {
   return (
     <form className={styles.searchForm} onSubmit={handleSubmit}>
       <input type="text" value={text} onChange={(e) => setText(e.target.value)} aria-label="Recipe search" placeholder="Vegetable chicken"></input>
-      <BsSearch size={24} onClick={handleSubmit} />
+      <BsSearch size={24} color={'black'} onClick={handleSubmit} />
     </form>
   );
 }

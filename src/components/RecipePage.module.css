@@ -23,6 +23,13 @@ html, body {
   margin: 0px;
   padding: 0px;
 }
+.bodyDiv {
+  width: 100vw;
+  max-width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0px;
+}
 .img {
   grid-row: 2/3;
   grid-column: 1/2;
@@ -55,12 +62,14 @@ html, body {
   grid-row: 3/4;
   grid-column: 1/3;
 }
-.link {
+.links {
   grid-column: 2/3;
-  text-decoration: underline;
   justify-self: end;
   align-self: center;
   display: block;
+}
+.link {
+  text-decoration: underline;
 }
 @media screen and (width < 1080px) {
   .container {
@@ -73,6 +82,14 @@ html, body {
   }
   .container > * {
     margin-bottom: 30px;
+  }
+  .links {
+    position: relative;
+  }
+  .links svg {
+    position: absolute !important;  
+    right: 0px;
+    top: -16px;
   }
   
 }

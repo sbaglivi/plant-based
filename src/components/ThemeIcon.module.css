@@ -1,0 +1,11 @@
+
+.themeIcon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  border: 1px solid white;
+  padding: 8px;
+}
+.themeIcon:hover {
+  cursor: pointer;
+}

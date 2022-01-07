@@ -31,8 +31,3 @@
     width: 50vw;
   } 
 }
-@media screen and (width < 600px){
-  .searchForm input {
-    width: 70vw;
-  }
-}

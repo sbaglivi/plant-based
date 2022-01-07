@@ -34,6 +34,14 @@
   height: 250px;
   transition: height 0.5s;
 }
+@media screen and (width < 1024px) {
+  .recipeTime, .recipePrice, .recipeServings {
+    opacity: 1;
+  }
+  .recipe img {
+    height: 250px;
+  }
+}
 /* @keyframes show {
   from {
     display: none;
