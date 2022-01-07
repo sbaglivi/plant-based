@@ -4,11 +4,12 @@ import RecipePage from "./components/RecipePage";
 import styles from "./App.module.css"
 import { useState } from 'react';
 import { Route, Routes, useParams, Link } from 'react-router-dom';
+import { ThemeContext, defaultValue } from './theme-context';
 
 const NotFound = () => {
   const params = useParams();
   return (
-    <div>
+    <div className={styles.errorPage}>
       <p>Sorry, we don't have any route for {params.unknown}</p>
       <Link to="/">Go back to the homepage</Link>
     </div>
@@ -22,14 +23,11 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const getRecipes = async (query) => {
     let queryString = `https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&query=${query}&apiKey=${API_KEY}&addRecipeInformation=true&fillIngredients=true`;
-    console.log(firstSearchDone)
     firstSearchDone = true;
-    console.log(firstSearchDone);
     try {
       let response = await fetch(queryString);
       if (response.ok) {
         let results = await response.json();
-        console.log(results.results);
         setRecipes(results.results)
       }
     } catch (e) {
@@ -38,19 +36,21 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route path="/" exact element={
-        <div className={styles.App}>
-          {!recipes.length ? <h1>Plant Based</h1> : null}
-          <SearchForm getRecipes={getRecipes} />
-          <div className={styles.recipesDiv}>
-            {recipes.length ? recipes.map(recipe => <Link to={`recipes/${recipe.id}`} key={recipe.id} > <Recipe recipe={recipe} /></Link>) : (firstSearchDone ? <h4 className={styles.error}> Sorry there were no results for your search. </h4> : null)}
+    <ThemeContext.Provider value={defaultValue}>
+      <Routes>
+        <Route path="/" exact element={
+          <div className={styles.App}>
+            {!recipes.length ? <h1>Plant Based</h1> : null}
+            <SearchForm getRecipes={getRecipes} />
+            <div className={styles.recipesDiv}>
+              {recipes.length ? recipes.map(recipe => <Link to={`recipes/${recipe.id}`} key={recipe.id} > <Recipe recipe={recipe} /></Link>) : (firstSearchDone ? <h4 className={styles.error}> Sorry there were no results for your search. </h4> : null)}
+            </div>
           </div>
-        </div>
-      } />
-      <Route path="/recipes/:id" element={<RecipePage recipes={recipes} />} />
-      <Route path="/:unknown" element={<NotFound />} />
-    </Routes>
+        } />
+        <Route path="/recipes/:id" element={<RecipePage recipes={recipes} />} />
+        <Route path="/:unknown" element={<NotFound />} />
+      </Routes>
+    </ThemeContext.Provider>
   );
 }
 
