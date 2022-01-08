@@ -1,14 +1,13 @@
 import SearchForm from './components/SearchForm';
 import RecipePage from "./components/RecipePage";
 import styles from "./App.module.css"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeContext, themes } from './theme-context';
 import ThemeIcon from './components/ThemeIcon';
 import NotFound from "./components/NotFound";
 import Banner from "./components/Banner"
 import RecipeList from './components/RecipeList';
-import { useEffect } from 'react/cjs/react.development';
 let firstSearchDone = false;
 function App() {
 
@@ -47,6 +46,7 @@ function App() {
     if (!firstSearchDone) return;
     getRecipes();
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    // eslint-disable-next-line
   }, [pageNumber])
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }} >

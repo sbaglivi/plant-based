@@ -1,6 +1,6 @@
 # Bookworm
 ![Website image](./src/assets/images/website-ss.jpg)
-Web application based on the [OpenLibrary API](https://openlibrary.org/developers/api) that allows users to browse books of a specified genre.
+Web application based on the [spoonacular API](https://spoonacular.com/food-api) that allows users to browse vegetarian recipes.
 
 The app is available at: https://bookworm-a8090.web.app/
 
