@@ -1,14 +1,8 @@
 import styles from "../App.module.css";
 import { Link } from "react-router-dom";
 import Recipe from "./Recipe";
-const RecipeList = ({ recipes, firstSearchDone, pageNumber, getNextPage, getPreviousPage }) => {
-  if (!recipes.length) {
-    if (firstSearchDone) {
-      return <h4 className={styles.error}>Sorry, there were no results for your search.</h4>
-    } else {
-      return null;
-    }
-  }
+const RecipeList = ({ recipes, pageNumber, getNextPage, getPreviousPage }) => {
+  if (!recipes.length) return null;
   return (
     <>
       <div className={styles.recipesDiv}>
@@ -19,6 +13,6 @@ const RecipeList = ({ recipes, firstSearchDone, pageNumber, getNextPage, getPrev
         {recipes.length >= 10 ? <button onClick={getNextPage}>Next Page</button> : null}
       </div>
     </>
-  );
+  )
 }
 export default RecipeList;

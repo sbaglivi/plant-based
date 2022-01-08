@@ -9,6 +9,7 @@ import ThemeIcon from './components/ThemeIcon';
 import NotFound from "./components/NotFound";
 import Banner from "./components/Banner"
 import RecipeList from './components/RecipeList';
+import Error from "./components/Error";
 let firstSearchDone = false;
 function App() {
 
@@ -16,28 +17,36 @@ function App() {
   const [theme, setTheme] = useState(themes.dark);
   const [pageNumber, setPageNumber] = useState(0);
   const [query, setQuery] = useState("");
+  const [error, setError] = useState("");
   const toggleTheme = () => {
     const newTheme = theme === themes.dark ? themes.light : themes.dark;
     setTheme(newTheme);
   }
   const getRecipes = async () => {
-    try {
-      axios.get('https://api.spoonacular.com/recipes/complexSearch', {
-        params: {
-          apiKey: process.env.REACT_APP_API_KEY,
-          query: query,
-          offset: pageNumber * 10,
-          diet: 'vegetarian',
-          addRecipeInformation: 'true',
-          fillIngredients: 'true'
+    axios.get('https://api.spoonacular.com/recipes/complexSearch', {
+      params: {
+        apiKey: process.env.REACT_APP_API_KEY,
+        query: query,
+        offset: pageNumber * 10,
+        diet: 'vegetarian',
+        addRecipeInformation: 'true',
+        fillIngredients: 'true'
+      }
+    }).then(response => {
+      setRecipes(response.data.results);
+      if (response.data.results.length === 0) setError("Sorry, there were no results for your search")
+      else setError("");
+    }).catch(error => {
+      if (error.response) {
+        if (error.response.status === 402) {
+          setError("HTTP Error 402 - Unfortunately we reached our daily quota for API calls. Try again tomorrow.")
         }
-      }).then(response => {
-        setRecipes(response.data.results);
-      })
-
-    } catch (e) {
-      console.log(e);
-    }
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log(error.message)
+      }
+    })
   }
 
   const getNextPage = () => {
@@ -64,7 +73,8 @@ function App() {
             {!recipes.length ? <Banner /> : null}
             <ThemeIcon />
             <SearchForm newSearch={newSearch} query={query} setQuery={setQuery} />
-            <RecipeList recipes={recipes} firstSearchDone={firstSearchDone} pageNumber={pageNumber} getNextPage={getNextPage} getPreviousPage={getPreviousPage} />
+            <RecipeList recipes={recipes} pageNumber={pageNumber} getNextPage={getNextPage} getPreviousPage={getPreviousPage} />
+            <Error message={error} />
           </div>
         } />
         <Route path="/recipes/:id" element={<RecipePage recipes={recipes} />} />
