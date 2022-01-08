@@ -1,7 +1,7 @@
 const banner = () => {
   return (
     <>
-      <h1>Plant Based</h1>
+      <h1 style={{ textDecoration: 'underline' }}>Plant Based</h1>
       <h2>Explore vegetarian recipes that suit your needs</h2>
     </>
   );
