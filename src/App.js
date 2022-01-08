@@ -4,6 +4,7 @@ import styles from "./App.module.css"
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeContext, themes } from './theme-context';
+import axios from "axios";
 import ThemeIcon from './components/ThemeIcon';
 import NotFound from "./components/NotFound";
 import Banner from "./components/Banner"
@@ -20,13 +21,20 @@ function App() {
     setTheme(newTheme);
   }
   const getRecipes = async () => {
-    const queryString = `https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&query=${query}&apiKey=${process.env.REACT_APP_API_KEY}&addRecipeInformation=true&fillIngredients=true&offset=${pageNumber * 10}`;
     try {
-      let response = await fetch(queryString);
-      if (response.ok) {
-        let results = await response.json();
-        setRecipes(results.results)
-      }
+      axios.get('https://api.spoonacular.com/recipes/complexSearch', {
+        params: {
+          apiKey: process.env.REACT_APP_API_KEY,
+          query: query,
+          offset: pageNumber * 10,
+          diet: 'vegetarian',
+          addRecipeInformation: 'true',
+          fillIngredients: 'true'
+        }
+      }).then(response => {
+        setRecipes(response.data.results);
+      })
+
     } catch (e) {
       console.log(e);
     }
