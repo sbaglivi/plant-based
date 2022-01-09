@@ -1,23 +1,26 @@
 import SearchForm from './components/SearchForm';
 import RecipePage from "./components/RecipePage";
-import styles from "./App.module.css"
-import { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { ThemeContext, themes } from './theme-context';
-import axios from "axios";
 import ThemeIcon from './components/ThemeIcon';
 import NotFound from "./components/NotFound";
 import Banner from "./components/Banner"
 import RecipeList from './components/RecipeList';
 import Error from "./components/Error";
+
+import { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { ThemeContext, themes } from './assets/js/theme-context';
+import axios from "axios";
+
+import styles from "./assets/css/App.module.css"
+
 let firstSearchDone = false;
 function App() {
-
   const [recipes, setRecipes] = useState([]);
   const [theme, setTheme] = useState(themes.dark);
   const [pageNumber, setPageNumber] = useState(0);
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
+
   const toggleTheme = () => {
     const newTheme = theme === themes.dark ? themes.light : themes.dark;
     setTheme(newTheme);
@@ -48,7 +51,6 @@ function App() {
       }
     })
   }
-
   const getNextPage = () => {
     setPageNumber(pageNumber + 1);
   }
@@ -59,12 +61,14 @@ function App() {
     if (!firstSearchDone) firstSearchDone = true;
     pageNumber === 0 ? getRecipes() : setPageNumber(0);
   }
+
   useEffect(() => {
     if (!firstSearchDone) return;
     getRecipes();
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     // eslint-disable-next-line
   }, [pageNumber])
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }} >
       <Routes>

@@ -1,4 +1,4 @@
-import styles from "../App.module.css";
+import styles from "../assets/css/App.module.css";
 import { Link } from "react-router-dom";
 import Recipe from "./Recipe";
 const RecipeList = ({ recipes, pageNumber, getNextPage, getPreviousPage }) => {

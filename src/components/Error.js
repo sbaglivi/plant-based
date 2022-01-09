@@ -1,4 +1,4 @@
-import styles from "../App.module.css";
+import styles from "../assets/css/App.module.css";
 const Error = ({ message }) => {
   if (message === "") return null;
   return (

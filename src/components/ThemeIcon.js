@@ -1,6 +1,6 @@
 import { BsSun, BsMoon } from 'react-icons/bs';
-import { ThemeContext } from '../theme-context';
-import styles from './ThemeIcon.module.css'
+import { ThemeContext } from '../assets/js/theme-context';
+import styles from '../assets/css/ThemeIcon.module.css'
 const ThemeIcon = ({ custom }) => {
   const customStyles = custom || {};
   return (

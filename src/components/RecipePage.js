@@ -1,7 +1,7 @@
 import IngredientList from "./IngredientList";
 import { useParams, Link } from "react-router-dom";
-import styles from "./RecipePage.module.css";
-import { ThemeContext } from "../theme-context";
+import styles from "../assets/css/RecipePage.module.css";
+import { ThemeContext } from "../assets/js/theme-context";
 import ThemeIcon from "./ThemeIcon";
 const RecipePage = ({ recipes }) => {
   const { id } = useParams();

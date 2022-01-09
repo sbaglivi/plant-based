@@ -1,7 +1,7 @@
-import { ThemeContext } from "../theme-context";
+import { ThemeContext } from "../assets/js/theme-context";
 import ThemeIcon from "./ThemeIcon";
 import { Link, useParams } from "react-router-dom";
-import styles from "../App.module.css";
+import styles from "../assets/css/App.module.css";
 const NotFound = () => {
   const params = useParams();
   return (

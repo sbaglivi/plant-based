@@ -1,5 +1,5 @@
 import { BsSearch } from "react-icons/bs";
-import styles from "./SearchForm.module.css";
+import styles from "../assets/css/SearchForm.module.css";
 const SearchForm = ({ newSearch, query, setQuery }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
