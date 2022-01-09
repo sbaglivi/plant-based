@@ -12,7 +12,7 @@ const SearchForm = ({ newSearch, query, setQuery }) => {
   }
   return (
     <form className={styles.searchForm} onSubmit={handleSubmit}>
-      <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} aria-label="Recipe search" placeholder="Vegetable chicken"></input>
+      <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} aria-label="Recipe search" placeholder="Brown rice"></input>
       <BsSearch size={24} color={'black'} onClick={handleSubmit} />
     </form>
   );
